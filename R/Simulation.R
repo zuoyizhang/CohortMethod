@@ -40,7 +40,7 @@ createCohortDataSimulationProfile <- function(cohortData){
   #covariatePrevalence <- covariatePrevalence[order(names(covariatePrevalence),]
   
   writeLines("Computing propensity model")
-  propensityScore <- createPs(cohortData, prior=Cyclops::createPrior("laplace",0.1))
+  propensityScore <- createPs(cohortData, prior=Cyclops2::createPrior("laplace",0.1))
   propensityModel <- attr(propensityScore,"coefficients")
   
   writeLines("Fitting outcome model(s)")
@@ -50,7 +50,7 @@ createCohortDataSimulationProfile <- function(cohortData){
   outcomeModels <- vector("list", length(cohortData$metaData$outcomeConceptIds))
   for (i in 1:length(cohortData$metaData$outcomeConceptIds)){
     outcomeConceptId = cohortData$metaData$outcomeConceptIds[i]
-    outcomeModel <- fitOutcomeModel(outcomeConceptId, cohortData, strata, useCovariates = TRUE, modelType = "pr", prior=Cyclops::createPrior("laplace",0.1))
+    outcomeModel <- fitOutcomeModel(outcomeConceptId, cohortData, strata, useCovariates = TRUE, modelType = "pr", prior=Cyclops2::createPrior("laplace",0.1))
     outcomeModels[[i]] <- outcomeModel$coefficients
   }
   

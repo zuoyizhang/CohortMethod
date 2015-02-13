@@ -55,8 +55,8 @@ Getting Started
   library(devtools)
   install_github("ohdsi/SqlRender") 
   install_github("ohdsi/DatabaseConnector") 
-  install_github("ohdsi/Cyclops") 
-  install_github("ohdsi/CohortMethod") 
+  install_github("ohdsi/Cyclops/fancy_iterators") 
+  install_github("ohdsi/CohortMethod/fancy_iterators") 
   ```
 
 Getting Involved

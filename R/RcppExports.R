@@ -2,14 +2,14 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 .matchOnPs <- function(propensityScores, treatment, maxRatio, caliper) {
-    .Call('CohortMethod_matchOnPs', PACKAGE = 'CohortMethod', propensityScores, treatment, maxRatio, caliper)
+    .Call('CohortMethod2_matchOnPs', PACKAGE = 'CohortMethod2', propensityScores, treatment, maxRatio, caliper)
 }
 
 .aucWithCi <- function(propensityScores, treatment) {
-    .Call('CohortMethod_aucWithCi', PACKAGE = 'CohortMethod', propensityScores, treatment)
+    .Call('CohortMethod2_aucWithCi', PACKAGE = 'CohortMethod2', propensityScores, treatment)
 }
 
 .auc <- function(propensityScores, treatment) {
-    .Call('CohortMethod_auc', PACKAGE = 'CohortMethod', propensityScores, treatment)
+    .Call('CohortMethod2_auc', PACKAGE = 'CohortMethod2', propensityScores, treatment)
 }
 

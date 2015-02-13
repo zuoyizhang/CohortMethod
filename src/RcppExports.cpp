@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // matchOnPs
 DataFrame matchOnPs(std::vector<double> propensityScores, std::vector<int> treatment, unsigned int maxRatio, double caliper);
-RcppExport SEXP CohortMethod_matchOnPs(SEXP propensityScoresSEXP, SEXP treatmentSEXP, SEXP maxRatioSEXP, SEXP caliperSEXP) {
+RcppExport SEXP CohortMethod2_matchOnPs(SEXP propensityScoresSEXP, SEXP treatmentSEXP, SEXP maxRatioSEXP, SEXP caliperSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -25,7 +25,7 @@ END_RCPP
 }
 // aucWithCi
 std::vector<double> aucWithCi(std::vector<double> propensityScores, std::vector<int> treatment);
-RcppExport SEXP CohortMethod_aucWithCi(SEXP propensityScoresSEXP, SEXP treatmentSEXP) {
+RcppExport SEXP CohortMethod2_aucWithCi(SEXP propensityScoresSEXP, SEXP treatmentSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {
@@ -41,7 +41,7 @@ END_RCPP
 }
 // auc
 double auc(std::vector<double> propensityScores, std::vector<int> treatment);
-RcppExport SEXP CohortMethod_auc(SEXP propensityScoresSEXP, SEXP treatmentSEXP) {
+RcppExport SEXP CohortMethod2_auc(SEXP propensityScoresSEXP, SEXP treatmentSEXP) {
 BEGIN_RCPP
     SEXP __sexp_result;
     {

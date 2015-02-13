@@ -30,7 +30,7 @@
 #' @importFrom RJDBC dbDisconnect
 #' @importFrom survival survfit Surv
 #' @import bit
-#' @import Cyclops
+#' @import Cyclops2
 #' @import DatabaseConnector
 #' @useDynLib CohortMethod
 NULL

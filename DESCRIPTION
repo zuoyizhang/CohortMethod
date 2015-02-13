@@ -1,4 +1,4 @@
-Package: CohortMethod
+Package: CohortMethod2
 Type: Package
 Title: New-user cohort method with large scale propensity and outcome models
 Version: 1.0.0
@@ -23,7 +23,7 @@ Depends:
     R (>= 3.1.0),
     bit,
     DatabaseConnector,
-    Cyclops (>= 1.0.0)
+    Cyclops2 (>= 1.0.0)
 Imports:     
     ggplot2,
     ff,

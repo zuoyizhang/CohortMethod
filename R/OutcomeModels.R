@@ -45,12 +45,12 @@ createDataForModelFitCox <- function(useStrata,
       informativeStrata <- unique(data$stratumId[data$y == 1])
       informativeData <- data[data$stratumId %in% informativeStrata,]
       covariates <- merge(covariates,ff::as.ffdf(informativeData[,c("rowId","y","time","stratumId")]))
-      result$cyclopsData <- Cyclops::convertToCyclopsData(ff::as.ffdf(informativeData),covariates,modelType="cox",quiet=TRUE)
+      result$cyclopsData <- Cyclops2::convertToCyclopsData(ff::as.ffdf(informativeData),covariates,modelType="cox",quiet=TRUE)
       result$data <- data
     } else {
       data$stratumId <- NULL
       covariates <- merge(covariates,ff::as.ffdf(data[,c("rowId","y","time")]))
-      result$cyclopsData <- Cyclops::convertToCyclopsData(ff::as.ffdf(data),covariates,modelType="cox",quiet=TRUE)
+      result$cyclopsData <- Cyclops2::convertToCyclopsData(ff::as.ffdf(data),covariates,modelType="cox",quiet=TRUE)
       result$data <- data
     }
   } else {# don't use covariates    
@@ -58,14 +58,14 @@ createDataForModelFitCox <- function(useStrata,
       covariates <- data[,c("rowId","y","time","stratumId","treatment")]
       covariates$covariateId <- 1
       colnames(covariates)[colnames(covariates) == "treatment"] <- "covariateValue"
-      result$cyclopsData <- Cyclops::convertToCyclopsData(data, covariates, modelType = "cox", quiet = TRUE)
+      result$cyclopsData <- Cyclops2::convertToCyclopsData(data, covariates, modelType = "cox", quiet = TRUE)
       result$data <- data
     } else {
       data$stratumId <- NULL
       covariates <- data[,c("rowId","y","time","treatment")]
       covariates$covariateId <- 1
       colnames(covariates)[colnames(covariates) == "treatment"] <- "covariateValue"
-      result$cyclopsData <- Cyclops::convertToCyclopsData(data, covariates, modelType = "cox", quiet = TRUE)
+      result$cyclopsData <- Cyclops2::convertToCyclopsData(data, covariates, modelType = "cox", quiet = TRUE)
       result$data <- data
     }
   }
@@ -100,11 +100,11 @@ createDataForModelFitPoisson <- function(useStrata,
       informativeStrata <- unique(data$stratumId[data$y == 1])
       informativeData <- data[data$stratumId %in% informativeStrata,]
       covariates <- merge(covariates,ff::as.ffdf(informativeData[,c("rowId","y","time","stratumId")]))
-      result$cyclopsData <- Cyclops::convertToCyclopsData(ff::as.ffdf(informativeData),covariates,modelType="cpr",addIntercept=FALSE,quiet=TRUE)
+      result$cyclopsData <- Cyclops2::convertToCyclopsData(ff::as.ffdf(informativeData),covariates,modelType="cpr",addIntercept=FALSE,quiet=TRUE)
       result$data <- data
     } else {
       covariates <- merge(covariates,ff::as.ffdf(data[,c("rowId","y","time")]))
-      result$cyclopsData <- Cyclops::convertToCyclopsData(ff::as.ffdf(data),covariates,modelType="pr",quiet=TRUE)
+      result$cyclopsData <- Cyclops2::convertToCyclopsData(ff::as.ffdf(data),covariates,modelType="pr",quiet=TRUE)
       result$data <- data
     }
   } else {# don't use covariates  
@@ -113,13 +113,13 @@ createDataForModelFitPoisson <- function(useStrata,
       covariates <- data[,c("rowId","y","time","stratumId","treatment")]
       covariates$covariateId <- 1
       colnames(covariates)[colnames(covariates) == "treatment"] <- "covariateValue"
-      result$cyclopsData <- Cyclops::convertToCyclopsData(data, covariates, modelType = "cpr", quiet = TRUE)
+      result$cyclopsData <- Cyclops2::convertToCyclopsData(data, covariates, modelType = "cpr", quiet = TRUE)
       result$data <- data
     } else {
       covariates <- data[,c("rowId","y","time","treatment")]
       covariates$covariateId <- 1
       colnames(covariates)[colnames(covariates) == "treatment"] <- "covariateValue"
-      result$cyclopsData <- Cyclops::convertToCyclopsData(data, covariates, modelType = "pr", quiet = TRUE)
+      result$cyclopsData <- Cyclops2::convertToCyclopsData(data, covariates, modelType = "pr", quiet = TRUE)
       result$data <- data
     }
   }
@@ -151,12 +151,12 @@ createDataForModelFitLogistic <- function(useStrata,
       informativeStrata <- unique(data$stratumId[data$y == 1])
       informativeData <- data[data$stratumId %in% informativeStrata,]
       covariates <- merge(covariates,ff::as.ffdf(informativeData[,c("rowId","stratumId")]))
-      result$cyclopsData <- Cyclops::convertToCyclopsData(ff::as.ffdf(informativeData),covariates,modelType="clr",addIntercept=FALSE,quiet=TRUE)
+      result$cyclopsData <- Cyclops2::convertToCyclopsData(ff::as.ffdf(informativeData),covariates,modelType="clr",addIntercept=FALSE,quiet=TRUE)
       result$data <- data
     } else {
       t <- ffbase::ffmatch(x = covariates$rowId, table=ff::as.ff(data$rowId), nomatch = 0L) > 0L
       covariates <- covariates[ffbase::ffwhich(t,t == TRUE),]
-      result$cyclopsData <- Cyclops::convertToCyclopsData(ff::as.ffdf(data), covariates, modelType = "lr", addIntercept = TRUE, quiet = TRUE)
+      result$cyclopsData <- Cyclops2::convertToCyclopsData(ff::as.ffdf(data), covariates, modelType = "lr", addIntercept = TRUE, quiet = TRUE)
       result$data <- data
     }
   } else {# don't use covariates  
@@ -164,13 +164,13 @@ createDataForModelFitLogistic <- function(useStrata,
       covariates <- data[,c("rowId","stratumId","treatment")]
       covariates$covariateId <- 1
       colnames(covariates)[colnames(covariates) == "treatment"] <- "covariateValue"
-      result$cyclopsData <- Cyclops::convertToCyclopsData(data, covariates, modelType = "clr", quiet = TRUE)
+      result$cyclopsData <- Cyclops2::convertToCyclopsData(data, covariates, modelType = "clr", quiet = TRUE)
       result$data <- data
     } else {
       covariates <- data[,c("rowId","treatment")]
       covariates$covariateId <- 1
       colnames(covariates)[colnames(covariates) == "treatment"] <- "covariateValue"
-      result$cyclopsData <- Cyclops::convertToCyclopsData(data, covariates, modelType = "lr", quiet = TRUE)
+      result$cyclopsData <- Cyclops2::convertToCyclopsData(data, covariates, modelType = "lr", quiet = TRUE)
       result$data <- data
     }
   }
@@ -332,7 +332,7 @@ fitOutcomeModel <- function(outcomeConceptId,
         prior$exclude = c(0,1) # Exclude treatment variable and intercept from regularization
     } else
       prior <- createPrior("none") #Only one variable, which we're not going to regularize, so effectively no prior
-    fit <- Cyclops::fitCyclopsModel(dataObject$cyclopsData, 
+    fit <- Cyclops2::fitCyclopsModel(dataObject$cyclopsData, 
                            prior = prior,
                            control = control)  
     if (fit$return_flag == "ILLCONDITIONED"){
